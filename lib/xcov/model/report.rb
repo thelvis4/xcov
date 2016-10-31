@@ -68,6 +68,15 @@ module Xcov
       filtered_targets = filtered_targets.select { |target| !target["name"].include?(".xctest") } if !Xcov.config[:include_test_targets]
       filtered_targets = filtered_targets.select { |target| !self.excluded_targets.include?(target["name"])}
 
+      supported_targets = Xcov.project.targets
+      if Xcov.config[:only_project_targets] && !supported_targets.empty?
+        filtered_targets = filtered_targets.select do |target|
+          name = target["name"]
+          name.slice! File.extname(name) # remove target extensions
+          supported_targets.include?(name)
+        end
+      end
+
       filtered_targets
     end
 

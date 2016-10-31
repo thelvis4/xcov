@@ -98,8 +98,14 @@ module Xcov
                                      default_value: false),
         FastlaneCore::ConfigItem.new(key: :exclude_targets,
                                      optional: true,
-                                     description: "Comma separated list of targets to exclude from coverage report")
+                                     description: "Comma separated list of targets to exclude from coverage report"),
+        FastlaneCore::ConfigItem.new(key: :only_project_targets,
+                                     description: "Display the coverage only for main project targets (e.g. skip Pods targets)",
+                                     is_string: false,
+                                     default_value: false)
+
       ]
+
     end
 
   end
