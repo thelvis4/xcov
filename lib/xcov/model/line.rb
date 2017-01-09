@@ -15,6 +15,18 @@ module Xcov
       execution_count > 0
     end
 
+    def json_value
+      value = {
+        "count" => execution_count,
+        "executable" => executable
+      }
+      unless ranges.nil?
+        value["ranges"] = ranges.map { |range| range.json_value }
+      end
+
+      value
+    end
+
     # Class methods
 
     def self.map(dictionary)

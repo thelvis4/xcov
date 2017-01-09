@@ -52,10 +52,18 @@ module Xcov
     def json_value
       value = {
         "name" => @name,
+        "location" => @location,
         "coverage" => @coverage,
         "type" => @type,
         "functions" => @functions ? @functions.map{ |function| function.json_value } : []
       }
+
+      if Xcov.config[:info_about_lines] && !lines.nil?
+        value["lines"] = lines.map { |line| line.json_value }
+      end
+
+      value
+
       if @ignored then
         value["ignored"] = true
       end

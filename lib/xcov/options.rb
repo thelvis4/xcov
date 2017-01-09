@@ -185,9 +185,12 @@ module Xcov
           conflicting_options: [:exclude_targets, :include_targets],
           description: "Display the coverage only for main project targets (e.g. skip Pods targets)",
           is_string: false,
-          default_value: false
-        ),
-
+          default_value: false),
+        FastlaneCore::ConfigItem.new(key: :info_about_lines,
+                                     description: "Display the information about lines in reports",
+                                     optional: true,
+                                     is_string: false,
+                                     default_value: false),
         # Coveralls options
         FastlaneCore::ConfigItem.new(
           key: :coveralls_service_name,

@@ -11,6 +11,14 @@ module Xcov
       @length = length
     end
 
+    def json_value
+      {
+        "count" => execution_count,
+        "location" => location,
+        "length" => length
+      }
+    end
+
     # Class methods
 
     def self.map(dictionary)
